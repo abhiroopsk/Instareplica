@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Instagram</title>
+</head>
+
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+
+    {% if user.is_authenticated %}
+
+    <h3>Add Post</h3><br><br>
+    <!-- add css here -->
+    <div class="form-group" style="width: 70vw; margin: auto;">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-secondary">Post</button>
+            <br>       
+        </form><br>
+        <a href="{% url 'home' %}"><button class="btn btn-success">Back</button> <br><br></a>
+       
+
+    </div>
+
+    {% else %}
+    Please login first!
+
+    {% endif %}
+
+
+    {% endblock %}
+
+</body>
+
+</html>

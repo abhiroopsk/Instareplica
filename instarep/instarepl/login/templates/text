@@ -1,0 +1,94 @@
+href="{% url 'show_profile_page' post.author.profile.id  %}"
+
+ <!-- <li class="nav-item" style="margin-left: 10px;">
+                <a class="nav-link" href="{% url 'show_profile_page' post.author.profile.id  %}"><img src="https://i.pinimg.com/originals/97/21/05/972105c5a775f38cf33d3924aea053f1.jpg" height="24px" alt="icon"></a>
+              </li> -->
+              <!-- <li class="nav-item" style="margin-left: 10px;">
+                <a class="nav-link" href="{% url 'show_profile_page' %}"><img src="https://i.pinimg.com/originals/97/21/05/972105c5a775f38cf33d3924aea053f1.jpg" height="24px" alt="icon"></a>
+              </li> -->
+
+
+
+# def ShowProfilePageView(request):
+
+  profile= Profile.objects.get()
+
+    # if request.user.is_authenticated:
+    #     context={}
+    #     obj = get_object_or_404(User, id= id )
+    #     form = PostForm(request.POST or None, instance=obj)
+    # if form.is_valid:
+    #     form.save()
+    #     return HttpResponseRedirect('/profile/' + id)
+    # context['form'] = form
+    # context['post'] = post.objects.all()
+    # context['id'] = request.user.id
+
+    # return render(request, 'registration/user_profile.html')
+
+
+
+    
+class ShowProfilePageView(ListView):
+    model= Profile
+
+    template_name = 'registration/user_profile.html'
+    
+
+HOMEPAGE
+  <!-- <div class="iammaster row" style=" display: flex;">
+        <div class="master master-s col-sm-8" style="width: 40vw;margin-left: 10vw;">
+            <ul>
+                {% for post in posts %}
+                <div style="border: rgb(212, 211, 211) solid 1px; padding: 10px; border-radius: 5px;">
+                    <div class="card-title"><b>{{post.author}}</b> -
+                        <small><small>{{post.post_date}}</small></small><br>
+                    </div>
+                    {% if post.header_image %}
+                    <img src=" {{ post.header_image.url }}" alt="image" style="border: rgb(212, 211, 211) solid 1px;"
+                        class="card-img-top">
+                    {% endif %}
+
+
+                    <div class="card-text"><u>{{ post.title }} </u> <br><br>
+                        {{post.body}}
+                        <br><br>
+
+                        <form action="/home/like/" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="post_id" value="{{ post.id }}" style="display: none;">
+                            <button type="submit">Like</button>
+                        </form><br>
+                        <form action="/home/unlike/" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="post_id" value="{{ post.id }}" style="display: none;">
+                            <button type="submit">Unlike</button>
+                        </form><br>
+                        <p>Likes: {{ post.likes.count }}</p>
+                        <p>Unlikes: {{ post.unlikes.count }}</p>
+                    </div>
+
+                </div>
+                <br><br>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="master2 col-sm-4" style="width: 15vw;margin-left: 14vw;">
+
+            <div style="border: rgb(212, 211, 211) solid 1px; padding: 10px; border-radius: 5px;"><br>
+                <h4 style="text-align: center;">People you may know!</h4><br>
+                {% for x in users %}
+                <div style="text-align: center;">
+                    <div>
+
+                        <br><b></b>{{x.username}}</b>
+                        <button type="submit" id="follow">Follow</button>
+
+                    </div>
+                </div><br>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div> -->

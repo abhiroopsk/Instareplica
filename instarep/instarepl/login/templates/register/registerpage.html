@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Register Page</title>
+    <style>
+/*   
+  body{
+    background-color: #d2dae2;
+  }
+  ul{
+    
+    margin-left: 400px;
+    padding: 15px;
+  }
+  li{
+    color: #e74c3c;
+    font-size: 20px;
+  }
+  h1{
+      padding:15px;
+      margin: auto;
+      background-color: white;
+      width: 30vw;
+  }
+  .container{
+      padding-top: 30px;
+      text-align: center;
+      margin: auto;
+      width: 20vw;
+      border: black solid 1px;
+  } */
+  
+  </style>
+</head>
+<body  >
+  {% extends 'base.html' %}
+  {% block content %}
+    <h1 style="text-align: center;" >Register Page</h1><br><br><br>
+    <div class="container">
+     
+  <form action="" method="POST" class="form-group">
+      
+      {% csrf_token %}
+      {{form.as_p}}
+      <br>
+      <button type="submit" class="btn_register">Register</button> <br><br>
+     <p>Have an account ? Login <a href="{% url 'login' %} "> here</a></p>
+      </form>
+</div>
+{% endblock %}
+</body>
+</html>

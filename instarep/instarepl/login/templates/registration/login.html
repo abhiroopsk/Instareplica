@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Login Page</title>
+    <style>
+  
+  body{
+    background-color: #d2dae2;
+  }
+  /* ul{
+    
+    margin-left: 400px;
+    padding: 15px;
+  }
+  li{
+    color: #e74c3c;
+    font-size: 20px;
+  } */
+  h1{
+      padding:15px;
+      margin: auto;
+      background-color: white;
+      width: 30vw;
+  }
+  .container{
+      
+      padding-top: 20px;
+      text-align: center;
+      margin: auto;
+      width: 10vw;
+      /* border: black solid 1px; */
+  }
+  
+  </style>
+</head>
+<body  >
+  {% extends 'base.html' %}
+  {% block content %}
+
+  {% if user.is_authenticated %}
+      
+    You are already logged in!!
+    <br><br><br>
+    <a href="{% url 'home' %}"><button class="btn btn-success">Back</button> <br><br></a>
+  {% else %}
+   
+
+
+    <h1 style="text-align: center;" ><img src="https://assets.website-files.com/5c75b94c8dd1ae50d3b9294b/5d48831280adb734a5db5620_hukglfkfklk%3B.png" alt="" style="width: 250px;"></h1><br>
+    <div class="container">
+      
+  <form action="" method="POST" class="form-group">
+      
+      {% csrf_token %}
+      {{form.as_p}}
+      
+      <br>
+      <button type="submit" class="btn btn-success">Login</button> <br><br>
+      <p>Don't have any account? Register<a href="{% url 'register' %} "> here</a></p>
+      </form>
+</div>
+
+{% endif %}
+
+{% endblock %}
+</body>
+</html>

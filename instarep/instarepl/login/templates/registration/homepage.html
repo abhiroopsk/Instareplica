@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+    </style>
+
+    <title>Instagram</title>
+</head>
+
+<body>
+    {% block content %}
+    {% if user.is_authenticated %}
+    <br><br><br>
+    <h3>Welcome to homepage {{request.user.username}} </h3><br><br>
+  
+
+    {% else %}
+    <h3>Please login first!</h3><br><br>
+
+
+    {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ul>
+                {% for post in posts %}
+                <div style="border: rgb(212, 211, 211) solid 1px; padding: 10px; border-radius: 5px;">
+                    <div class="card-title"><b>{{post.author}}</b> -
+                        <small><small>{{post.post_date}}</small></small><br>
+                    </div>
+                    {% if post.header_image %}
+                    <img src="{{ post.header_image.url }}" alt="image" style="border: rgb(212, 211, 211) solid 1px; width: 40%;"
+                        class="card-img-top">
+                    {% endif %}
+
+
+                    <div class="card-text"><u>{{ post.title }} </u> <br><br>
+                        {{post.body}}
+                        <br><br>
+
+                        <form action="/home/like/" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="post_id" value="{{ post.id }}" style="display: none;">
+                            <button type="submit">Like</button>
+                        </form><br>
+                        <form action="/home/unlike/" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="post_id" value="{{ post.id }}" style="display: none;">
+                            <button type="submit">Unlike</button>
+                        </form><br>
+                        <p>Likes: {{ post.likes.count }}</p>
+                        <p>Unlikes: {{ post.unlikes.count }}</p>
+                    </div>
+
+                </div>
+                <br><br>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h4 style="text-align: center;">People you may know!</h4><br>
+            {% for x in users %}
+            <div style="text-align: center;">
+                <div>
+                    </b>{{x.username}}</b>
+                    <!-- <button type="submit" id="follow">Follow</button> -->
+
+                </div>
+            </div><br>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    {% endblock %}
+
+</body>
+
+</html>
